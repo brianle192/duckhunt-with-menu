@@ -277,13 +277,13 @@ struct Game {
         box[3].center.y = WINDOW_HEIGHT - (WINDOW_HEIGHT - floor) - (floor / 1.5);
         box[3].center.z = 0;
 
-        //score on shot
+       //score on shot
         box[4].width = 45;
         box[4].height = 35;
         box[4].center.x = 0;
         box[4].center.y = 0;
         box[4].center.z = 0;
-		
+/*		
         box[5].width = 100;
         box[5].height = 80;
         box[5].center.x = 110;
@@ -301,10 +301,29 @@ struct Game {
         box[7].center.x = 690;
         box[7].center.y = 500;
         box[7].center.z = 0;
+*/
 
+       for(int i=5; i<8; i++)
+        {
+        box[i].width = 140;
+        box[i].height = 40;
+        }
+        
+        box[5].center.x = 400;
+        box[5].center.y = 500;
+        box[5].center.z = 0;
+
+        box[6].center.x = 400;
+        box[6].center.y = 400;
+        box[6].center.z = 0;
+
+        box[7].center.x = 400;
+        box[7].center.y = 300;
+        box[7].center.z = 0;
 
 
     }
+ 
 };
 
 
@@ -1442,7 +1461,7 @@ void render(Game *game)
 //Drawing Boxes
 	Shape *s;
 
-	if (game->menutest == true) {
+/*	if (game->menutest == true) {
        const char* text[3] = {"One Duck Hunt", "Two Duct Hunt", "        Exit"}; // the Text need fixing to look better.
 		for(int i=5; i<8; i++) {
 			glColor3ub(90, 140, 90);
@@ -1478,6 +1497,34 @@ void render(Game *game)
 	}
 
 
+*/
+
+if (game->menutest == true)
+   {
+       const char* text[3] = {"One Duck Hunt - Press 1", "Two Duct Hunt - Press 2", "       Exit - Press ESC"};
+    for(int i=5; i<8; i++)
+    {
+        glColor3ub(90, 140, 90);
+        s = &game->box[i];
+        glPushMatrix();
+        glTranslatef(s->center.x, s->center.y, s->center.z);
+        w = s->width;
+        h = s->height;
+        r.bot = s->height - 50;
+        r.left = s->width - 230;
+        glBegin(GL_QUADS);
+        glVertex2i(-w,-h);
+        glVertex2i(-w, h);
+        glVertex2i( w, h);
+        glVertex2i( w,-h);
+        glEnd();
+        ggprint13(&r, 16, 0x00ffffff, text[i]);
+       // r.bot = s->height - 120;
+       // r.left = s->width - 170;
+       // ggprint16(&r, 35, 0x00ffffff, "TESTING");
+        glPopMatrix();
+   }
+}
 
 
 	
